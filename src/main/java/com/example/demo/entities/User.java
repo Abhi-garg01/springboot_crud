@@ -2,15 +2,14 @@ package com.example.demo.entities;
 
 import jakarta.persistence.*;
 
-
-
 @Entity
 @Table(name = "users")
-public class user {
+public class User {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String username;
     private String password;
     private String firstname;
@@ -19,13 +18,12 @@ public class user {
     private String phone;
     private boolean enable;
 
-    public user() {
-
+    // Default constructor
+    public User() {
     }
 
-    public user(int id, String username, String password, String firstname, String lastname, String email, String phone,
-                boolean enable) {
-        super();
+    // Parameterized constructor
+    public User(int id, String username, String password, String firstname, String lastname, String email, String phone, boolean enable) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -36,6 +34,7 @@ public class user {
         this.enable = enable;
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -48,7 +47,7 @@ public class user {
         return username;
     }
 
-    public  void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -100,10 +99,18 @@ public class user {
         this.enable = enable;
     }
 
+    // toString method
     @Override
     public String toString() {
-        return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
-                + ", lastname=" + lastname + ", email=" + email + ", phone=" + phone + ", enable=" + enable + "]";
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", enable=" + enable +
+                '}';
     }
-
 }
