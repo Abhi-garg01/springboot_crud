@@ -21,6 +21,7 @@ public class UserControler {
         return users;
     }
 
+
     // Get a user by ID
     @GetMapping("/{id}")
     public User getUser(@PathVariable int id) {
