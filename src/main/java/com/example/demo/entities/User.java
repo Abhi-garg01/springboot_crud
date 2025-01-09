@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class User {
 
     @Id //defines the primary key
-    @GeneratedValue(strategy = GenerationType.AUTO) //for automatically give the value
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //for automatically give the value
     private int id;
 
     private String username;
