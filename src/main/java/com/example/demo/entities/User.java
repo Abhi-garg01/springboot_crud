@@ -2,12 +2,12 @@ package com.example.demo.entities;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity //to mark a java class as a java persistence API (JPA) entity
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id //defines the primary key
+    @GeneratedValue(strategy = GenerationType.AUTO) //for automatically give the value
     private int id;
 
     private String username;

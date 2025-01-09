@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ControlerClass {
+public class UserController {
 
     @Autowired
     private UserRepository repo;
 
     // Get all users
     // Endpoint: localhost:8080/data
-    @GetMapping("/data")
+    @GetMapping()
     public List<User> getAllUsers() {
         return repo.findAll();
     }
 
     // Get a specific user by ID
-    @GetMapping("/data/{id}")
+    @GetMapping("/{id}")
     public User getUser(@PathVariable int id) {
         return repo.findById(id).orElse(null); // Added null check for safety
     }
 
     // Add a new user
-    @PostMapping("/data/add")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User user) {
         repo.save(user);
     }
 
     // Update an existing user by ID
-    @PutMapping("/data/update/{id}")
+    @PutMapping("/{id}")
     public User updateUser(@PathVariable int id) {
         User user = repo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         user.setUsername("rajat"); // Example hardcoded update
@@ -46,7 +46,7 @@ public class ControlerClass {
     }
 
     // Delete a user by ID
-    @DeleteMapping("/data/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
         User user = repo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         repo.delete(user);
