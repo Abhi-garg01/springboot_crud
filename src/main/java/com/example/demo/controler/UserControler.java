@@ -2,7 +2,6 @@ package com.example.demo.controler;
 
 import com.example.demo.entities.User;
 import com.example.demo.repository.UserRepository;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -44,9 +43,12 @@ public class UserControler {
 
     // Delete a user
     @DeleteMapping("/{id}")
-    public void removeUser(@PathVariable int id) {
+    public boolean removeUser(@PathVariable int id) {
         User user = repo.findById(id).get();
         repo.delete(user);
+        
+        return true;
+
     }
 
     // Partial update of a user
