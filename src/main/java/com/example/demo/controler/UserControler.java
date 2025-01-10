@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserControler {
@@ -45,9 +46,13 @@ public class UserControler {
     // Delete a user
     @DeleteMapping("/{id}")
     public boolean removeUser(@PathVariable int id) {
-        User user = repo.findById(id).get();
+        Optional<User> userOptional = repo.findById(id);
+        if (userOptional.isEmpty()) {
+            return false;  // User not found, return false
+        }
+        User user = userOptional.get();
         repo.delete(user);
-        return true;
+        return true;  // Successfully deleted
     }
 
     // Partial update of a user

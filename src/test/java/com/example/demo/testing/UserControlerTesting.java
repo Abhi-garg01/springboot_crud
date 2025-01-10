@@ -14,8 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
@@ -59,7 +58,16 @@ public class UserControlerTesting {
 
     @Test
     public void deleteUserTest() {
-        assertNotNull(userss.removeUser(103));
+        // Arrange: mock the repository
+        User userToDelete = new User();
+        userToDelete.setId(103);
+        Mockito.when(repo.findById(103)).thenReturn(Optional.of(userToDelete));
+
+        // Act: delete user
+        boolean result = userss.removeUser(103);
+        // Assert: check that the user was deleted and the result is true
+        assertTrue(result);
+        Mockito.verify(repo, Mockito.times(1)).delete(userToDelete);  // Verify that the delete method was called once
     }
 
     @Test
