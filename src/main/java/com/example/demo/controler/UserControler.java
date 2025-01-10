@@ -46,6 +46,7 @@ public class UserControler {
     // Delete a user
     @DeleteMapping("/{id}")
     public boolean removeUser(@PathVariable int id) {
+<<<<<<< HEAD
         Optional<User> userOptional = repo.findById(id);
         if (userOptional.isEmpty()) {
             return false;  // User not found, return false
@@ -53,6 +54,13 @@ public class UserControler {
         User user = userOptional.get();
         repo.delete(user);
         return true;  // Successfully deleted
+=======
+        User user = repo.findById(id).get();
+        repo.delete(user);
+        
+        return true;
+
+>>>>>>> origin/main
     }
 
 
