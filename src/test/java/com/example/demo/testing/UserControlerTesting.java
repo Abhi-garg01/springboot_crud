@@ -12,6 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -77,4 +79,27 @@ public class UserControlerTesting {
         assertEquals("Test User", updatedUser.getFirstname());
         Mockito.verify(repo, Mockito.times(1)).save(mockUser);
     }
+    @Test
+    public void updateUserPartiallyTest() {
+        // Arrange
+        int userId = 1;
+        User existingUser = new User();
+        existingUser.setId(userId);
+        existingUser.setFirstname("Old Name");
+        existingUser.setEmail("oldemail@example.com");
+
+        Mockito.when(repo.findById(userId)).thenReturn(Optional.of(existingUser));
+        Mockito.when(repo.save(Mockito.any(User.class))).thenReturn(existingUser);
+
+        // Act
+        User updatedUser = userss.updateUserPartially(userId);
+
+        // Assert
+        assertNotNull(updatedUser);
+        assertEquals("ponam", updatedUser.getFirstname());
+        assertEquals("harbahajn@gamil.com", updatedUser.getEmail());
+        Mockito.verify(repo, Mockito.times(1)).findById(userId);
+        Mockito.verify(repo, Mockito.times(1)).save(existingUser);
+    }
 }
+
