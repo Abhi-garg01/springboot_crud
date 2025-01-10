@@ -55,6 +55,7 @@ public class UserControler {
         return true;  // Successfully deleted
     }
 
+
     // Partial update of a user
     @PatchMapping("/{id}")
     public User updateUserPartially(@PathVariable int id) {
