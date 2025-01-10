@@ -103,6 +103,7 @@ public class UserControlerTesting {
         User updatedUser = userss.updateUserPartially(userId);
 
         // Assert
+
         assertNotNull(updatedUser);
         assertEquals("ponam", updatedUser.getFirstname());
         assertEquals("harbahajn@gamil.com", updatedUser.getEmail());
