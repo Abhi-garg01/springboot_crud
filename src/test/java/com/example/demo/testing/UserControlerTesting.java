@@ -43,7 +43,16 @@ public class UserControlerTesting {
 
     @Test
     public void createUsersTest() {
-        assertNotNull(new Object());
+        // Arrange
+        User user = new User();
+        user.setId(1);
+        user.setFirstname("test User");
+
+        // Act
+        userss.createUser(user);
+
+        // Assert
+        Mockito.verify(repo, Mockito.times(1)).save(user);
     }
 
     @Test
