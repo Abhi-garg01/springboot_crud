@@ -44,9 +44,10 @@ public class UserControler {
 
     // Delete a user
     @DeleteMapping("/{id}")
-    public void removeUser(@PathVariable int id) {
+    public boolean removeUser(@PathVariable int id) {
         User user = repo.findById(id).get();
         repo.delete(user);
+        return true;
     }
 
     // Partial update of a user
